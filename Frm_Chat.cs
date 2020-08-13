@@ -32,10 +32,9 @@ namespace MyQQ
             string sql = "update tb_Message set MessageState=1 where ID=";//修改消息状态为已读MessageState=1
             foreach (string id in messageIDs)
             {
-                if(id !="")
+                if (id != "")
                 {
-                    sql += id;
-                    int result = dataOperator.ExecSQLResult(sql);
+                    int result = dataOperator.ExecSQLResult(sql+id);
                 }
             }
         }
@@ -48,12 +47,9 @@ namespace MyQQ
             string messageID = "";
             string message;
             string messageTime;
-            string sql = "select ID,Message,MessageTime from tb_Message" +" where " +
-                "FromUserID=" + friendID +//好友用户ID
-                "and ToUserID=" + PublicClass.login_ID +//登录用户ID
-                "and MessageTypeID=1 and MessageState=0";//MessageTypeID=1表示为聊天消息，MessageState=0表示消息未读。
+            string sql = "select ID,Message,MessageTime from tb_Message where FromUserID=" + friendID + " and ToUserID=" + PublicClass.login_ID + " and MessageTypeID=1 and MessageState=0";//好友用户ID                
             SqlDataReader dataReader = dataOperator.GetDataReader(sql);
-            while(dataReader.Read())
+            while (dataReader.Read())
             {
                 messageID += dataReader["ID"] + "_";//将消息ID连接
                 message = dataReader["Message"].ToString();
@@ -62,9 +58,9 @@ namespace MyQQ
             }
             dataReader.Close();
             DataOperator.connection.Close();
-            if(messageID.Length>1)
+            if (messageID.Length > 1)
             {
-                messageID.Remove(messageID.Length - 1);//去除连接消息最后的"_"符号
+                messageID = messageID.Remove(messageID.Length - 1);//去除连接消息最后的"_"符号
                 SetMessage(messageID);//设置消息已读
             }
         }
@@ -81,6 +77,36 @@ namespace MyQQ
         private void timer_ShowMessage_Tick(object sender, EventArgs e)
         {
             ShowMessage();
+        }
+
+        private void button_Send_Click(object sender, EventArgs e)
+        {
+            if (richTextBox_Chat.Text == "")
+            {
+                MessageBox.Show("不能发送空消息！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                string sql = string.Format("insert into tb_Message(FromUserID,ToUserID,Message,MessageTypeID,MessageState) " +
+                    "values({0},{1},'{2}',{3},{4})", PublicClass.login_ID, friendID, richTextBox_Chat.Text, 1, 0);
+                int result = dataOperator.ExecSQLResult(sql);
+                richTextBox_Message.Text += "\n" + Frm_Main.nickName + "  " + DateTime.Now + "\n" + richTextBox_Chat.Text;
+                if (result != 1)
+                {
+                    MessageBox.Show("消息发送失败，请重新发送！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                richTextBox_Chat.Text = "";//清空发送消息
+                richTextBox_Chat.Focus();//鼠标定位到消息输入文本框
+            }
+        }
+
+        private void richTextBox_Chat_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyValue == 13)
+            {
+                e.Handled = true;
+                button_Send_Click(this, null);
+            }
         }
     }
 }

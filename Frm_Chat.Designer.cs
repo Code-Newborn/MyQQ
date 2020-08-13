@@ -112,11 +112,11 @@
             this.richTextBox_Chat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox_Chat.Location = new System.Drawing.Point(3, 510);
             this.richTextBox_Chat.Name = "richTextBox_Chat";
-            this.richTextBox_Chat.ReadOnly = true;
             this.richTextBox_Chat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.richTextBox_Chat.Size = new System.Drawing.Size(590, 65);
             this.richTextBox_Chat.TabIndex = 6;
             this.richTextBox_Chat.Text = "";
+            this.richTextBox_Chat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox_Chat_KeyDown);
             // 
             // button_Send
             // 
@@ -126,6 +126,7 @@
             this.button_Send.TabIndex = 7;
             this.button_Send.Text = "发送";
             this.button_Send.UseVisualStyleBackColor = true;
+            this.button_Send.Click += new System.EventHandler(this.button_Send_Click);
             // 
             // button_Close
             // 

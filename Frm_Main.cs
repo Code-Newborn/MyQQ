@@ -219,9 +219,9 @@ namespace MyQQ
                     frm_Chat.ShowDialog();//以对话框形式显示聊天窗体
                     frm_Chat = null;//将聊天窗体对象设置为空
                 }
-                if (timer_Message.Enabled == true)//如果聊天定时器处于可用状态
+                if (timer_Chat.Enabled == true)//如果消息提示定时器处于可用状态
                 {
-                    timer_Chat.Stop();//停止聊天计时器
+                    timer_Chat.Stop();//停止头像闪烁
                     listView_Friend.SelectedItems[0].ImageIndex = friendHeadID;//将选中项的头像显示为正常状态
                 }
             }
@@ -289,11 +289,17 @@ namespace MyQQ
             toolStripButton_MessageRead.Image = imageList_Message.Images[messageImageIndex];//工具栏中显示消息读取状态图像
         }
 
+
+        /// <summary>
+        /// 消息发送者头像闪烁-计时器事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer_Chat_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < 2; i++)
             {
-                for (int j = 0; j < listView_Friend.Items.Count; j++)
+                for (int j = 0; j < listView_Friend.Groups[i].Items.Count; j++)
                 {
                     if (Convert.ToInt32(listView_Friend.Groups[i].Items[j].Name) == fromUserID)
                     {
