@@ -86,6 +86,7 @@
             this.pictureBox_ChatClose.Size = new System.Drawing.Size(25, 25);
             this.pictureBox_ChatClose.TabIndex = 3;
             this.pictureBox_ChatClose.TabStop = false;
+            this.pictureBox_ChatClose.Click += new System.EventHandler(this.button_Close_Click);
             // 
             // pictureBox_MessageRecord
             // 
@@ -95,6 +96,7 @@
             this.pictureBox_MessageRecord.Size = new System.Drawing.Size(90, 25);
             this.pictureBox_MessageRecord.TabIndex = 4;
             this.pictureBox_MessageRecord.TabStop = false;
+            this.pictureBox_MessageRecord.Click += new System.EventHandler(this.pictureBox_MessageRecord_Click);
             // 
             // label_Friend
             // 
@@ -136,6 +138,7 @@
             this.button_Close.TabIndex = 8;
             this.button_Close.Text = "关闭";
             this.button_Close.UseVisualStyleBackColor = true;
+            this.button_Close.Click += new System.EventHandler(this.button_Close_Click);
             // 
             // timer_ShowMessage
             // 
@@ -271,6 +274,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "聊天窗体";
             this.Load += new System.EventHandler(this.Frm_Chat_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Frm_Chat_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ChatHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ChatMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ChatClose)).EndInit();

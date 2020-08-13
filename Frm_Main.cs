@@ -322,5 +322,20 @@ namespace MyQQ
                 }
             }
         }
+
+        private void pictureBox_Close_Click(object sender, EventArgs e)
+        {
+            dataOperator.ExecSQLResult("update tb_User set Flag=0 where UserID=" + PublicClass.login_ID);
+            Application.ExitThread();
+        }
+
+        private void Frm_Main_MouseDown(object sender, MouseEventArgs e)
+        {
+            //用来释放被当前线程中某个窗口捕获的光标
+            PublicClass.ReleaseCapture();
+            //向Windows发送拖动窗体的消息
+            PublicClass.SendMessage(this.Handle, PublicClass.WM_SYSCOMMAND, PublicClass.SC_MOVE + PublicClass.HTCAPTION, 0);
+
+        }
     }
 }

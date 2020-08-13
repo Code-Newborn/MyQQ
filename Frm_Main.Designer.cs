@@ -332,6 +332,7 @@
             this.pictureBox_Close.Size = new System.Drawing.Size(25, 25);
             this.pictureBox_Close.TabIndex = 3;
             this.pictureBox_Close.TabStop = false;
+            this.pictureBox_Close.Click += new System.EventHandler(this.pictureBox_Close_Click);
             // 
             // pictureBox_Head
             // 
@@ -482,6 +483,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Q友";
             this.Load += new System.EventHandler(this.Frm_Main_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Frm_Main_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Min)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Close)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Head)).EndInit();

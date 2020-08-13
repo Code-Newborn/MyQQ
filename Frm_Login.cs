@@ -152,5 +152,12 @@ namespace MyQQ
         {
             Application.ExitThread();
         }
+
+        private void Frm_Login_MouseDown(object sender, MouseEventArgs e)
+        {
+            PublicClass.ReleaseCapture();
+            //向Window发送拖动窗体的消息，登录窗体可拖动了
+            PublicClass.SendMessage(this.Handle, PublicClass.WM_SYSCOMMAND, PublicClass.SC_MOVE + PublicClass.HTCAPTION, 0);
+        }
     }
 }

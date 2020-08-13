@@ -90,6 +90,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicClass.cs" />
+    <EmbeddedResource Include="Frm_AddFriend.resx">
+      <DependentUpon>Frm_AddFriend.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Chat.resx">
       <DependentUpon>Frm_Chat.cs</DependentUpon>
     </EmbeddedResource>

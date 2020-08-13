@@ -58,7 +58,7 @@ namespace MyQQ
 
 
         /// <summary>
-        /// 执行SQL语句，数据结果存储到并返回sqlDataReader
+        /// 执行SQL语句，数据结果存储到SqlDataReader并返回
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>

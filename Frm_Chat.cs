@@ -34,7 +34,7 @@ namespace MyQQ
             {
                 if (id != "")
                 {
-                    int result = dataOperator.ExecSQLResult(sql+id);
+                    int result = dataOperator.ExecSQLResult(sql + id);
                 }
             }
         }
@@ -100,13 +100,60 @@ namespace MyQQ
             }
         }
 
+        /// <summary>
+        /// 聊天文本框内按键发送消息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void richTextBox_Chat_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyValue == 13)
+            if (e.Control && e.KeyValue == 13)//按下Ctrl+Enter键发送消息
             {
-                e.Handled = true;
+                e.Handled = true;//如果为false，发送完消息，聊天文本框会多出一空行
                 button_Send_Click(this, null);
             }
+        }
+
+        /// <summary>
+        /// 消息记录显示按钮 事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox_MessageRecord_Click(object sender, EventArgs e)
+        {
+            richTextBox_Message.Clear();                                                    //清空消息框
+            string messageID = "";                                                          //消息ID
+            string message;                                                                 //消息内容
+            string messageTime;                                                             //消息时间
+            string sql = "select ID,NickName,Message,MessageTime from v_Message " + "where " +
+                "(FromUserID=" + friendID + " and ToUserID=" + PublicClass.login_ID + ") or" +
+                "(FromUserID=" + PublicClass.login_ID + "and ToUserID=" + friendID + ") " +
+                "order by MessageTime asc";                                                 //消息查询SQL语句
+            SqlDataReader dataReader = dataOperator.GetDataReader(sql);                     //执行查询
+            while(dataReader.Read())                                                        //循环读取消息
+            {
+                messageID += dataReader["ID"] + "_";                                        //连接消息ID字符串
+                message = dataReader["Message"].ToString();                                 //获取消息内容
+                messageTime = Convert.ToDateTime(dataReader["MessageTime"]).ToString();     //获取消息时间
+                richTextBox_Message.Text += "\n" + dataReader["NickName"] + "  " + messageTime + "\n  " + message;  //消息显示格式
+            }
+            dataReader.Close();
+            DataOperator.connection.Close();
+        }
+
+
+        private void button_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Dispose();
+        }
+
+        private void Frm_Chat_MouseDown(object sender, MouseEventArgs e)
+        {
+            PublicClass.ReleaseCapture(); //释放被当前线程中某个窗口捕获的光标
+
+            PublicClass.SendMessage(this.Handle, PublicClass.WM_SYSCOMMAND, PublicClass.SC_MOVE + PublicClass.HTCAPTION, 0);
+
         }
     }
 }

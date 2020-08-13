@@ -149,6 +149,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Q友登录";
             this.Load += new System.EventHandler(this.Frm_Login_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Frm_Login_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Min)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Login)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Close)).EndInit();
