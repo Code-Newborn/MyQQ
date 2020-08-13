@@ -43,14 +43,14 @@ namespace MyQQ
         /// <summary>
         /// 获取所有未读消息
         /// </summary>
-        private void ShoeMessage()
+        private void ShowMessage()
         {
             string messageID = "";
             string message;
             string messageTime;
             string sql = "select ID,Message,MessageTime from tb_Message" +" where " +
                 "FromUserID=" + friendID +//好友用户ID
-                "and ToUserID" + PublicClass.login_ID +//登录用户ID
+                "and ToUserID=" + PublicClass.login_ID +//登录用户ID
                 "and MessageTypeID=1 and MessageState=0";//MessageTypeID=1表示为聊天消息，MessageState=0表示消息未读。
             SqlDataReader dataReader = dataOperator.GetDataReader(sql);
             while(dataReader.Read())
@@ -76,6 +76,11 @@ namespace MyQQ
             pictureBox_ChatHead.Image = imageList_Head.Images[headID - 1];
             label_Friend.Text = string.Format("{0} {1}", nickName, friendID);
             richTextBox_Message.ScrollToCaret();
+        }
+
+        private void timer_ShowMessage_Tick(object sender, EventArgs e)
+        {
+            ShowMessage();
         }
     }
 }

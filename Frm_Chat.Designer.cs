@@ -140,6 +140,7 @@
             // 
             this.timer_ShowMessage.Enabled = true;
             this.timer_ShowMessage.Interval = 2000;
+            this.timer_ShowMessage.Tick += new System.EventHandler(this.timer_ShowMessage_Tick);
             // 
             // imageList_Head
             // 
