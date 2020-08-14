@@ -325,7 +325,7 @@ namespace MyQQ
 
         private void pictureBox_Close_Click(object sender, EventArgs e)
         {
-            dataOperator.ExecSQLResult("update tb_User set Flag=0 where UserID=" + PublicClass.login_ID);
+            dataOperator.ExecSQLResult("update tb_User set Flag=0 where ID=" + PublicClass.login_ID);
             Application.ExitThread();
         }
 
