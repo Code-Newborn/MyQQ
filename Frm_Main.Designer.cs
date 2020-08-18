@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Main));
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("好友", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("陌生人", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("好友", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("陌生人", System.Windows.Forms.HorizontalAlignment.Left);
             this.imageList_Head = new System.Windows.Forms.ImageList(this.components);
             this.imageList_SmallHead = new System.Windows.Forms.ImageList(this.components);
             this.imageList_Message = new System.Windows.Forms.ImageList(this.components);
@@ -348,13 +348,13 @@
             // 
             this.listView_Friend.BackColor = System.Drawing.Color.OldLace;
             this.listView_Friend.ContextMenuStrip = this.contextMenuStrip_Friend;
-            listViewGroup3.Header = "好友";
-            listViewGroup3.Name = "listViewGroup_Friend";
-            listViewGroup4.Header = "陌生人";
-            listViewGroup4.Name = "listViewGroup_Stranger";
+            listViewGroup1.Header = "好友";
+            listViewGroup1.Name = "listViewGroup_Friend";
+            listViewGroup2.Header = "陌生人";
+            listViewGroup2.Name = "listViewGroup_Stranger";
             this.listView_Friend.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup3,
-            listViewGroup4});
+            listViewGroup1,
+            listViewGroup2});
             this.listView_Friend.HideSelection = false;
             this.listView_Friend.LargeImageList = this.imageList_Head;
             this.listView_Friend.Location = new System.Drawing.Point(0, 115);
@@ -375,27 +375,30 @@
             this.ToolStripMenuItem_Add,
             this.ToolStripMenuItem_Del});
             this.contextMenuStrip_Friend.Name = "contextMenuStrip1";
-            this.contextMenuStrip_Friend.Size = new System.Drawing.Size(125, 70);
+            this.contextMenuStrip_Friend.Size = new System.Drawing.Size(181, 92);
             // 
             // toolStripMenuItem_HeadView
             // 
             this.toolStripMenuItem_HeadView.Name = "toolStripMenuItem_HeadView";
-            this.toolStripMenuItem_HeadView.Size = new System.Drawing.Size(124, 22);
+            this.toolStripMenuItem_HeadView.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem_HeadView.Text = "小头像";
+            this.toolStripMenuItem_HeadView.Click += new System.EventHandler(this.toolStripMenuItem_HeadView_Click);
             // 
             // ToolStripMenuItem_Add
             // 
             this.ToolStripMenuItem_Add.Name = "ToolStripMenuItem_Add";
-            this.ToolStripMenuItem_Add.Size = new System.Drawing.Size(124, 22);
+            this.ToolStripMenuItem_Add.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItem_Add.Text = "添加好友";
             this.ToolStripMenuItem_Add.Visible = false;
+            this.ToolStripMenuItem_Add.Click += new System.EventHandler(this.ToolStripMenuItem_Add_Click);
             // 
             // ToolStripMenuItem_Del
             // 
             this.ToolStripMenuItem_Del.Name = "ToolStripMenuItem_Del";
-            this.ToolStripMenuItem_Del.Size = new System.Drawing.Size(124, 22);
+            this.ToolStripMenuItem_Del.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItem_Del.Text = "删除";
             this.ToolStripMenuItem_Del.Visible = false;
+            this.ToolStripMenuItem_Del.Click += new System.EventHandler(this.ToolStripMenuItem_Del_Click);
             // 
             // toolStrip_Operation
             // 

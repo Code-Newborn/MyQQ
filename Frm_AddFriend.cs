@@ -53,6 +53,7 @@ namespace MyQQ
             panel_BaseResult.Visible = true;
             button_Add.Visible = true;
             button_Back.Visible = true;
+            groupBox_BaseCondition.Visible = false;
         }
 
 
@@ -122,6 +123,7 @@ namespace MyQQ
             panel_AdvancedCondition.Visible = true;
             button_Back.Visible = false;
             button_Add.Visible = false;
+            groupBox_BaseCondition.Visible = true;
         }
 
         /// <summary>
@@ -198,10 +200,12 @@ namespace MyQQ
             if (friendID == -1)
             {
                 MessageBox.Show("请选择一个好友！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
             else if (HasAdded(friendID))
             {
                 MessageBox.Show("对方已经是您的好友，请重新选择！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
 
             string sql = "select FriendLimitID from tb_User where ID=" + friendID;

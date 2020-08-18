@@ -307,7 +307,7 @@ namespace MyQQ
                         {
                             listView_Friend.SelectedItems[0].ImageIndex = friendHeadID;
                         }
-                        else
+                        else//消息对象头的像闪烁
                         {
                             if (listView_Friend.Groups[i].Items[j].ImageIndex < 100)
                             {
@@ -323,12 +323,17 @@ namespace MyQQ
             }
         }
 
-        private void pictureBox_Close_Click(object sender, EventArgs e)
+        private void pictureBox_Close_Click(object sender, EventArgs e)//关闭
         {
             dataOperator.ExecSQLResult("update tb_User set Flag=0 where ID=" + PublicClass.login_ID);
             Application.ExitThread();
         }
 
+        /// <summary>
+        /// 使窗体能够拖动（窗体FormBorderStyle设置为无边框，无法移动）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Frm_Main_MouseDown(object sender, MouseEventArgs e)
         {
             //用来释放被当前线程中某个窗口捕获的光标
@@ -336,6 +341,80 @@ namespace MyQQ
             //向Windows发送拖动窗体的消息
             PublicClass.SendMessage(this.Handle, PublicClass.WM_SYSCOMMAND, PublicClass.SC_MOVE + PublicClass.HTCAPTION, 0);
 
+        }
+
+        /// <summary>
+        /// 右键大小头像显示转换
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripMenuItem_HeadView_Click(object sender, EventArgs e)
+        {
+            if (listView_Friend.View == View.LargeIcon)//当前显示的是大头像
+            {
+                for (int i = 0; i < listView_Friend.Items.Count; i++)
+                    listView_Friend.Items[i].Text = "  " + listView_Friend.Items[i].Text.TrimStart();
+                listView_Friend.View = View.SmallIcon;
+                toolStripMenuItem_HeadView.Text = "大头像";
+            }
+            else if (listView_Friend.View == View.SmallIcon)//当前显示的是小头像
+            {
+                for (int i = 0; i < listView_Friend.Items.Count; i++)
+                    listView_Friend.Items[i].Text = listView_Friend.Items[i].Text.PadLeft(9, ' ');
+                listView_Friend.View = View.LargeIcon;
+                toolStripMenuItem_HeadView.Text = "小头像";
+            }
+        }
+
+        /// <summary>
+        /// 右键添加好友
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Add_Click(object sender, EventArgs e)
+        {
+            if (listView_Friend.SelectedItems.Count > 0)//ListViewFriend有选中项
+            {
+                //定义为用户添加指定好友的SQL语句
+                string sql = "insert into tb_Friend (HostID,FriendID) values (" + PublicClass.login_ID + "," + Convert.ToInt32(listView_Friend.SelectedItems[0].Name) + ")";
+                int result = dataOperator.ExecSQLResult(sql);//执行SQL语句
+                if (result == 1)//执行成功
+                {
+                    MessageBox.Show("添加成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    listView_Friend.Groups[0].Items.Add(listView_Friend.SelectedItems[0]);
+                    ShowFriendList();
+                }
+                else
+                {
+                    MessageBox.Show("添加失败，请稍后再试！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 右键删除好友
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToolStripMenuItem_Del_Click(object sender, EventArgs e)
+        {
+            if (listView_Friend.SelectedItems.Count > 0)//如果有选中项
+            {
+                //弹出好友删除确认对话框
+                DialogResult result = MessageBox.Show("确实要删除该好友吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    //定义删除好友的SQL语句
+                    string sql = "delete from tb_Friend where HostID=" + PublicClass.login_ID + " and FriendID=" + Convert.ToInt32(listView_Friend.SelectedItems[0].Name);
+                    int deleteResult = dataOperator.ExecSQLResult(sql);
+                    if (deleteResult == 1)//执行成功
+                    {
+                        MessageBox.Show("好友已删除", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        listView_Friend.Items.Remove(listView_Friend.SelectedItems[0]);
+                    }
+                }
+            }
+            ShowFriendList();
         }
     }
 }
