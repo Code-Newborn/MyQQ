@@ -421,5 +421,22 @@ namespace MyQQ
             }
             ShowFriendList();
         }
+
+        private void textBox_Sign_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')//若在个性签名中按下回车键
+            {
+                dataOperator.ExecSQLResult("update tb_User set Sign='" + textBox_Sign.Text + "' where ID=" + PublicClass.login_ID);
+                //更新个性签名
+                textBox_Sign.ReadOnly = true;
+                //使个性签名不可编辑
+            }
+        }
+
+        private void textBox_Sign_Click(object sender, EventArgs e)
+        {
+            textBox_Sign.ReadOnly = false;//使个性签名可编辑
+            textBox_Sign.SelectAll();//选中所有文本
+        }
     }
 }

@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Main));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("好友", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("陌生人", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("好友", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("陌生人", System.Windows.Forms.HorizontalAlignment.Left);
             this.imageList_Head = new System.Windows.Forms.ImageList(this.components);
             this.imageList_SmallHead = new System.Windows.Forms.ImageList(this.components);
             this.imageList_Message = new System.Windows.Forms.ImageList(this.components);
@@ -311,8 +311,10 @@
             this.textBox_Sign.Location = new System.Drawing.Point(78, 64);
             this.textBox_Sign.Name = "textBox_Sign";
             this.textBox_Sign.ReadOnly = true;
-            this.textBox_Sign.Size = new System.Drawing.Size(130, 14);
-            this.textBox_Sign.TabIndex = 1;
+            this.textBox_Sign.Size = new System.Drawing.Size(180, 14);
+            this.textBox_Sign.TabIndex = 5;
+            this.textBox_Sign.Click += new System.EventHandler(this.textBox_Sign_Click);
+            this.textBox_Sign.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Sign_KeyPress);
             // 
             // pictureBox_Min
             // 
@@ -349,13 +351,13 @@
             // 
             this.listView_Friend.BackColor = System.Drawing.Color.OldLace;
             this.listView_Friend.ContextMenuStrip = this.contextMenuStrip_Friend;
-            listViewGroup1.Header = "好友";
-            listViewGroup1.Name = "listViewGroup_Friend";
-            listViewGroup2.Header = "陌生人";
-            listViewGroup2.Name = "listViewGroup_Stranger";
+            listViewGroup3.Header = "好友";
+            listViewGroup3.Name = "listViewGroup_Friend";
+            listViewGroup4.Header = "陌生人";
+            listViewGroup4.Name = "listViewGroup_Stranger";
             this.listView_Friend.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup3,
+            listViewGroup4});
             this.listView_Friend.HideSelection = false;
             this.listView_Friend.LargeImageList = this.imageList_Head;
             this.listView_Friend.Location = new System.Drawing.Point(0, 115);
@@ -365,7 +367,7 @@
             this.listView_Friend.Size = new System.Drawing.Size(282, 506);
             this.listView_Friend.SmallImageList = this.imageList_SmallHead;
             this.listView_Friend.StateImageList = this.imageList_SmallHead;
-            this.listView_Friend.TabIndex = 5;
+            this.listView_Friend.TabIndex = 1;
             this.listView_Friend.UseCompatibleStateImageBehavior = false;
             this.listView_Friend.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView_Friend_MouseDoubleClick);
             // 
