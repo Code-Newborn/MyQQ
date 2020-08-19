@@ -16,6 +16,9 @@ namespace MyQQ
         public Frm_Main()
         {
             InitializeComponent();
+            //控制ListView的行距和列距
+            PublicClass.SendMessage(this.listView_Friend.Handle, PublicClass.LVM_SETICONAPACING, 0, 0x10000 * 70 + 130);
+            //行距70、列距130
         }
 
         int fromUserID;
@@ -76,7 +79,7 @@ namespace MyQQ
                 if (strTemp.Length < 9)
                     strFriendName = strTemp.PadLeft(9, ' ');
                 else
-                    strFriendName = (strTemp.Substring(0, 2) + "…").PadLeft(9, ' ');
+                    strFriendName = (strTemp.Substring(0, 2) + "...").PadLeft(9, ' ');
                 listView_Friend.Items.Add(dataReader["FriendID"].ToString(), strFriendName + strFlag, (int)dataReader["HeadID"]);
                 listView_Friend.Items[i].Group = listView_Friend.Groups[0];//设置项的分组为我的好友
                 i++;

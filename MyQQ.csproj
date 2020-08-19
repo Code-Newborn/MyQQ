@@ -117,6 +117,9 @@
     <EmbeddedResource Include="Frm_Register.resx">
       <DependentUpon>Frm_Register.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Remind.resx">
+      <DependentUpon>Frm_Remind.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

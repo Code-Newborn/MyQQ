@@ -44,6 +44,7 @@
             this.listView_Head.HideSelection = false;
             this.listView_Head.LargeImageList = this.imageListHead;
             this.listView_Head.Location = new System.Drawing.Point(1, 0);
+            this.listView_Head.MultiSelect = false;
             this.listView_Head.Name = "listView_Head";
             this.listView_Head.Size = new System.Drawing.Size(361, 145);
             this.listView_Head.SmallImageList = this.imageListHead;
