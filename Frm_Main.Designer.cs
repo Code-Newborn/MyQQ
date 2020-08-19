@@ -343,6 +343,7 @@
             this.pictureBox_Head.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_Head.TabIndex = 4;
             this.pictureBox_Head.TabStop = false;
+            this.pictureBox_Head.Click += new System.EventHandler(this.toolStripButton_Info_Click);
             // 
             // listView_Friend
             // 
@@ -375,19 +376,19 @@
             this.ToolStripMenuItem_Add,
             this.ToolStripMenuItem_Del});
             this.contextMenuStrip_Friend.Name = "contextMenuStrip1";
-            this.contextMenuStrip_Friend.Size = new System.Drawing.Size(181, 92);
+            this.contextMenuStrip_Friend.Size = new System.Drawing.Size(125, 70);
             // 
             // toolStripMenuItem_HeadView
             // 
             this.toolStripMenuItem_HeadView.Name = "toolStripMenuItem_HeadView";
-            this.toolStripMenuItem_HeadView.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem_HeadView.Size = new System.Drawing.Size(124, 22);
             this.toolStripMenuItem_HeadView.Text = "小头像";
             this.toolStripMenuItem_HeadView.Click += new System.EventHandler(this.toolStripMenuItem_HeadView_Click);
             // 
             // ToolStripMenuItem_Add
             // 
             this.ToolStripMenuItem_Add.Name = "ToolStripMenuItem_Add";
-            this.ToolStripMenuItem_Add.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItem_Add.Size = new System.Drawing.Size(124, 22);
             this.ToolStripMenuItem_Add.Text = "添加好友";
             this.ToolStripMenuItem_Add.Visible = false;
             this.ToolStripMenuItem_Add.Click += new System.EventHandler(this.ToolStripMenuItem_Add_Click);
@@ -395,7 +396,7 @@
             // ToolStripMenuItem_Del
             // 
             this.ToolStripMenuItem_Del.Name = "ToolStripMenuItem_Del";
-            this.ToolStripMenuItem_Del.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItem_Del.Size = new System.Drawing.Size(124, 22);
             this.ToolStripMenuItem_Del.Text = "删除";
             this.ToolStripMenuItem_Del.Visible = false;
             this.ToolStripMenuItem_Del.Click += new System.EventHandler(this.ToolStripMenuItem_Del_Click);

@@ -120,7 +120,7 @@ namespace MyQQ
 
         private void textBox_ID_TextChanged(object sender, EventArgs e)
         {
-            string sql = "select Pwd,Remember,AutoLogin from tb_User where ID=" + int.Parse(textBox_ID.Text.Trim());
+            string sql = "select Pwd,Remember,AutoLogin from tb_User where ID=" + Convert.ToInt32(textBox_ID.Text.Trim()) + "";
             DataSet ds = dataOperator.GetDataSet(sql);
             if (ds.Tables[0].Rows.Count > 0)//输入的ID是否存在
             {

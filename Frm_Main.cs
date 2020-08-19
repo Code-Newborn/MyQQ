@@ -134,9 +134,9 @@ namespace MyQQ
 
         private void Frm_Main_Load(object sender, EventArgs e)
         {
-            toolStripButton_MessageRead.Image = imageList_Message.Images[0];
-            ShowUserInfo();
-            ShowFriendList();
+            toolStripButton_MessageRead.Image = imageList_Message.Images[0];//工具栏的消息图标
+            ShowUserInfo();//显示个人信息
+            ShowFriendList();//显示好友列表
         }
 
         /// <summary>
@@ -146,8 +146,9 @@ namespace MyQQ
         /// <param name="e"></param>
         private void toolStripButton_Info_Click(object sender, EventArgs e)
         {
-            Frm_EditInfo frm_EditInfo = new Frm_EditInfo();
-            frm_EditInfo.Show();
+            Frm_EditInfo frm_Info = new Frm_EditInfo();//创建个人信息窗体对象
+            frm_Info.frmMain = this;
+            frm_Info.Show();
         }
 
         /// <summary>
@@ -400,6 +401,7 @@ namespace MyQQ
         {
             if (listView_Friend.SelectedItems.Count > 0)//如果有选中项
             {
+                ToolStripMenuItem_Del.Visible = true;
                 //弹出好友删除确认对话框
                 DialogResult result = MessageBox.Show("确实要删除该好友吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
